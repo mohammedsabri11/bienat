@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+  <!-- Content Wrapper. Contains page content -->
+
+  <div class="content-wrapper" >
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1 class="align-left">
+      الصفحة الرئيسية
+      </h1>
+      <ol class="breadcrumb">
+     <li class="active"><a href="#"><i class="fa fa-dashboard"></i> الصفحة الرئيسية</a></li>
+
+
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        {% for message in messages %}
+        {% if message.tags == 'error' %}
+
+<div class="alert alert-danger">
+                {{ message }}
+            </div>
+
+        {% endif %}
+    {% endfor %}
+        <div class="box box-primary">
+            </div>
+      <div class="box-body"   >
+
+
+
+  <div class="col-md-3 no-float">
+               <div class="info-box">
+                <span class="info-box-icon bg-blue"><i class="fa fa-video-camera"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">ZOOM </span>
+               {% if zoom_id == 0 %}
+                  <span class="info-box-text"> لم يتم انشاء رابط <p> جلسة
+                     الزووم حتى الان </span>
+                  {% else %}
+                  <span class="info-box-number">
+
+
+
+ <a href="{% url 'zoom_meet_join' zoom_id %}" >انضمام</a></span>
+              {% endif %}
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+
+
+
+              <div class="info-box">
+
+                <span class="info-box-icon bg-red"><i class="fa fa-star-o"></i></span>
+                  <div class="info-box-content">
+                  <span class="info-box-text"> العلامات</span>
+                  <span class="info-box-number">
+                 <a href="{% url 'student-reports' %}" >عرض</a></span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+
+
+              <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="fa fa-file-text"></i></span>
+                <div class="info-box-content">
+                    <span class="info-box-text">الاختبارات</span>
+
+                  <span class="info-box-number">
+                 <a href="{% url 'student_quiz_list' %}" >عرض</a></span>
+
+
+</span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+
+ <div class="info-box">
+                <span class="info-box-icon bg-green"><i class="fa fa-calendar"></i></span>
+                <div class="info-box-content">
+                     <span class="info-box-text">الحضور</span>
+
+
+                  <span class="info-box-number">
+                 <a href="{% url 'take-attendance' %}" >تسجيل</a></span>
+
+
+</span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+
+
+
+
+ </div><!-- /.col -->
+<div class="col-md-9 no-float">
+  <div class="box" style="height:405px">
+            </div>
+  </div>
+
+        <!-- ./col -->
+
+
+      <!-- /.row -->
+ </div><!-- /.col -->
+      </section>
+      <!-- right col -->
+    </div>
+
+
+
+
+
+
+{% endblock %}

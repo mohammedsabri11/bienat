@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+
+
+  <div class="content-wrapper" dir="rtl">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+  <h1 class="align-left">
+    {{ quiz.name }}
+     </h1>
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'quiz_change_list' id %}">قائمة الاختبارات</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ quiz.name }}</li>
+    </ol>
+
+
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+      <div class="row">
+
+
+<div class="box box-primary">
+
+
+ <div class="box-header with-border">
+
+
+
+                <form class="form-horizontal" action="" method="POST" >
+                    {% csrf_token %}
+                     <div class="row">
+
+
+          <table class = 'table table-hover'>
+            {% for field in form %}
+              {% if forloop.counter <= 3 %}
+   <td></td>
+                  <td>{{ field.label }}</td>
+
+               <td></td>
+              {% endif %}
+            {% endfor %}
+               <tr>
+                {% for field in form %}
+              {% if forloop.counter <= 3 %}
+   <td></td>
+
+                  <td>{{ field }}</td>
+               <td></td>
+              {% endif %}
+            {% endfor %}
+
+            <td> <button type="submit" class="btn btn-success">حفظ التعديلات</button>
+   </td>
+               </tr>
+          </table>
+        </div>
+
+
+
+
+                </form>
+       </div>
+
+
+        </div>
+
+          <div class="box box-primary">
+               <div class="box-header with-border">
+                    <a href="{% url 'question_add' id quiz.pk %}" class="btn btn-primary btn-sm">اظافة  سؤال</a>
+
+                     </div>
+ <div class="box-body">
+    <table class="table table-bordered">
+<thead dir="rtl">
+
+                  <th>   السوال  </th>
+
+
+                  <th colspan="4"> الاجابة  ؟</th>
+
+</thead>
+      <tbody>
+{% for question,ans in resu2.items %}
+          <tr>
+ <td >Q)
+ <a href="{% url 'question_change' id quiz.pk question.pk %}">  {{ question.text }} </a>
+ </td>
+
+
+
+
+
+ {% for answer in ans %}
+
+
+                 <td class="align-right">
+<input type="checkbox" {% if answer.is_correct  %} checked  {% endif %} disabled/>
+
+
+                  {{ answer.text}}
+
+
+                 </td>
+
+
+
+              {% endfor %}
+                  </tr>
+        {% empty %}
+          <tr>
+                <div class="card-footer">
+            <td class="bg-light text-center font-italic" colspan="5">لم يتم اظافة اسئلة لهذا الاختبار.</td>
+         </div>
+         </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+
+  </div>
+    </div>
+
+
+ </div>
+
+    </section>
+  </div>
+
+
+{% endblock %}
+

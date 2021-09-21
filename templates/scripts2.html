@@ -1,0 +1,78 @@
+{% load static %}
+<script src="{% static 'css/bower_components/jquery/dist/jquery.min.js' %}"></script>
+<!-- jQuery UI 1.11.4 -->
+
+
+<!-- Bootstrap 3.3.7 -->
+
+<script src="{% static 'css/bower_components/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+
+<script src="{% static 'css/bower_components/dist2/js/app.min.js' %}"></script>
+<script src="{% static 'css/bower_components/dist2/js/demo.js' %}"></script>
+<!-- AdminLTE App -->
+<!-- DataTables-->
+ <script src="{% static 'css/bower_components/datatables/jquery.dataTables.min.js' %}"></script>
+    <script src="{% static 'css/bower_components/datatables/dataTables.bootstrap.min.js' %}"></script>
+
+ <script>
+  $(function () {
+        $("#example1").DataTable( {
+
+     "language":
+                        {
+                            "sProcessing": "جارٍ التحميل...",
+                            "sLengthMenu": "أظهر _MENU_ مدخلات",
+                            "sZeroRecords": "لم يعثر على أية سجلات",
+                            "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                            "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                            "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                            "sInfoPostFix": "",
+                            "sSearch": "ابحث:",
+                            "sUrl": "",
+                            "oPaginate": {
+                                "sFirst": "الأول",
+                                "sPrevious": "السابق",
+                                "sNext": "التالي",
+                                "sLast": "الأخير"
+                            } }
+
+         });
+ $("#example2").DataTable( {
+     "language":
+                        {
+                            "sProcessing": "جارٍ التحميل...",
+                            "sLengthMenu": "أظهر _MENU_ مدخلات",
+                            "sZeroRecords": "لم يعثر على أية سجلات",
+                            "sInfo": "إظهار _START_ إلى _END_ من أصل _TOTAL_ مدخل",
+                            "sInfoEmpty": "يعرض 0 إلى 0 من أصل 0 سجل",
+                            "sInfoFiltered": "(منتقاة من مجموع _MAX_ مُدخل)",
+                            "sInfoPostFix": "",
+                            "sSearch": "ابحث:",
+                            "sUrl": "",
+                            "oPaginate": {
+                                "sFirst": "الأول",
+                                "sPrevious": "السابق",
+                                "sNext": "التالي",
+                                "sLast": "الأخير"
+                            } }
+
+         });
+      });
+
+
+
+$( ".first" ).click(function() {
+    $(this).animate({width: 0}, {duration: 1000});
+    $(this).hide();
+    $(".second").show();
+    $(".second").animate({width: 400}, {duration: 1000});
+});
+
+$( ".second" ).click(function() {
+    $(this).animate({width: 0}, {duration: 1000});
+    $(this).hide();
+    $(".first").show();
+    $(".first").animate({width: 100}, {duration: 1000});
+});
+</script>
+

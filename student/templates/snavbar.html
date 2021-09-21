@@ -1,0 +1,45 @@
+{% load static %}
+<header class="main-header">
+ <nav class="navbar navbar-static-top" >
+  <div class="container-fluid">
+  <div class="navbar-header" >
+      <a class="navbar-brand" href="{%  url 'student-home' %}"><b>اكاديمية حاملات المسك   </b></a>
+    </div>
+
+
+      <ul class="nav navbar-nav navbar-left">
+
+
+          <!-- User Account: style can be found in dropdown.less -->
+
+     <li class="dropdown user user-menu" >
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <span class="hidden-xs">إدارة الحساب</span>
+     <img src="{% static 'img/profile.jpg' %}" class="user-image" alt="User Image">
+
+                </a>
+                <ul class="dropdown-menu dropdown-menu-left"  >
+                  <!-- User image -->
+                  <li class="user-header">
+                    <img src="{% static 'img/profile.jpg' %}" class="img-circle" alt="User Image">
+
+                  </li>
+                  <!-- Menu Body -->
+
+                  <!-- Menu Footer-->
+                  <li class="user-footer">
+                    <div class="pull-right">
+                        <a href="{% url 'admin-change-password' %}" class="btn btn-default btn-flat">الحساب</a>
+                    </div>
+                    <div class="pull-left">
+                        <a href="{% url 'logout' %}" class="btn btn-default btn-flat">تسجيل الخروج</a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+        </ul>
+
+
+  </div>
+</nav>
+</header>

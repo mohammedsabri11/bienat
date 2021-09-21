@@ -1,0 +1,95 @@
+
+.loginBox
+{
+	position: absolute;
+	top: 55%;
+
+	left: 52%;
+	transform: translate(-50%,-50%);
+	width: 350px;
+	height: 420px;
+background-color:  #fff;
+	padding: 80px 40px;
+	box-sizing: border-box;
+	border-size:2px;
+border-color: #222;
+
+}
+.user
+{
+	width: 120px;
+	height: 120px;
+	border-radius: 50%;
+	overflow: hidden;
+	position: absolute;
+	top: calc(-140px/2);
+	left: calc(50% - 52px);
+}
+h2
+{
+	margin: 0px;
+	padding: 0 0 20px;
+	color: #e0e040;
+	text-align: center;
+}
+.loginBox form-group
+{
+
+	font-weight: bold;
+	color: #555;
+}
+.loginBox input
+{
+	width: 100%;
+	margin-bottom: 20px;
+}
+.loginBox input[type="text"],
+.loginBox input[type="password"]
+{
+	border: none;
+	border-bottom: 1px solid #404040;
+background: transparent;
+	outline: none;
+	height: 40px;
+	color:  gray;
+	font-size: 16px;
+}
+::placeholder
+{
+	color: gray;
+}
+.loginBox input[type="submit"]
+{margin-top: 20px;
+	border: none;
+	outline: none;
+	height: 40px;
+	width :  220px;
+	color: #fff;
+	margin-left: 20px;
+	font-size: 16px;
+	background: orange;
+	cursor: pointer;
+	border-radius: 20px;
+}
+.loginBox input[type="submit"]:hover
+{margin-bottom: 20px;
+	background: orange;
+	color: #262626;
+}
+.loginBox a
+{	width: 100%;
+
+	margin-bottom: 20px;
+	color: #fff;
+	font-size: 14px;
+	font-weight: bold;
+	text-decoration: none;
+}
+#messages{
+			background-color: grey;
+			color: #000;
+			padding: 10px;
+			font-size: 14px;
+	font-weight: bold;
+			margin-top: 10px;
+		}

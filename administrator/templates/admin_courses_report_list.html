@@ -1,0 +1,83 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+
+
+  <div class="content-wrapper" dir="rtl">
+    <!-- Content Header (Page header) -->
+    <section class="content-header" dir="rtl">
+      <h1>
+  التقارير
+      </h1>
+      <ol class="breadcrumb" dir="rtl">
+        <li><a href="#"><i class="fa fa-dashboard"></i> الصفحة الرئيسية</a></li>
+        <li>التقارير</li>
+        <li class="active">قائمة الدورات</li>
+      </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-primary">
+          <div class="box-header with-border">
+             </div>
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                  <th>رقم الدورة</th>
+                  <th>اسم الدورة التعليمية</th>
+  <th>طلاب الدورة</th>
+
+
+
+
+                   <th>التقارير</th>
+
+
+                </thead>
+
+                <tbody>
+{% for course in courses_list %}
+                        <tr>
+                            <td>{{ course.id }}</td>
+                          <td>{{ course.courseName }}</td>
+<td>{{ course.student_count }}</td>
+                             <td>
+
+
+                          <a href="{%  url 'admin-reports-course' course.pk %}" > <button class="btn btn-info btn-sm add  btn-flat"><i class="fa fa-eye"></i> عرض </button></a>
+                           </td>
+
+
+
+                        </tr>
+ {% endfor %}
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+  </div>
+
+
+{% endblock %}

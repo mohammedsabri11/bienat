@@ -1,0 +1,65 @@
+{% extends 'main_header.html' %}
+{% load static %}
+{% block content %}
+	<style type="text/css">
+.text-black{
+
+
+    color:  blue !important;
+    margin-bottom: 22px;
+  }
+
+	.profile-pic{
+		max-width: 200px;
+		max-height:200px;
+		margin: 0 auto;
+		border-radius: 50%;
+	}
+
+</style>
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header" dir="rtl">
+
+    </section>
+    <!-- Main content -->
+    <section class="content">
+    <div class="row">
+
+           <div class="box box-primary">
+            </div>
+
+
+            <div class="box-body" >
+
+<div class="container">
+        <div class="row">
+
+            <div class="col-md-9">
+ <div class="box" style="height:405px">
+            </div>
+            </div>
+<div class="col-md-3" >
+                <div class="card card-body" style="text-align: center">
+
+                    <div class="circular--portrait">
+                    <img  src="{% static 'img/baclog.JPG' %}" >
+                    </div>
+                    <hr>
+                    <h3 style="text-align: center">اكاديمية حاملات المسك</h3>
+                    <hr>
+                </div>
+            </div>
+        </div>
+
+        </div>
+            </div>
+</div>
+
+    </section>
+  </div>
+
+{% endblock %}
+
+
+

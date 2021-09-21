@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+
+
+  <div class="content-wrapper" dir="rtl">
+    <!-- Content Header (Page header) -->
+      <section class="content-header" dir="rtl">
+         <h1 class="align-left">{{ question.text }}</h1>
+       <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a href="{% url 'quiz_change_list' id %}">قائمة الاختبارات</a></li>
+       <li class="breadcrumb-item"><a href="{% url 'quiz_change' id quiz.pk %}">{{ quiz.name }}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">{{ question.text }}</li>
+   </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+
+            <div class="box box-primary">
+
+
+
+
+            <div class="box-body" style="padding: 30px;">
+               <div class="row">
+
+         <div class="col-md-12" style="margin-top: 5px;">
+
+
+                <form class="form-horizontal" action="" method="POST" >
+                    {% csrf_token %}
+                     <div class="row">
+
+                        {{ formset.management_form }}
+
+     <table class = 'table table-hover' dir="rtl">
+
+
+            {% for field in form %}
+
+                <tr>
+                  <td>اظافة الاجابات الممكنة للسؤال </td>
+                     </tr>
+          <tr>
+                  <td><strong><a href="">{{ field }}</a>.</strong></td>
+
+                </tr>
+
+            {% endfor %}
+          </table>
+                  </div>
+
+
+<div class="row">
+
+
+                  <div class="card mb-3{% if formset.errors %} border-danger{% endif %}">
+      <div class="card-header">
+        <div class="row">
+            <table class = 'table table-hover' dir="rtl">
+
+<thead dir="rtl">
+                  <th>    الإجابات  </th>
+                  <th> الاجابة الصحيحة ؟</th>
+                   <td> {% if formset.form.instance.pk %}
+                 <th> <strong> حذف ؟</strong> </th>
+                {% endif %}
+
+</thead>
+                   <tbody>
+                   <tr>
+                       {% for error in formset.non_form_errors %}
+                        <div class="alert alert-danger">
+            {{ error }}
+            </div>
+         {% endfor %}
+
+                       </tr>
+           {% for form in formset %}
+
+                <tr>
+                  <td>
+                      {% for hidden in form.hidden_fields %}
+                      {{ hidden }}{% endfor %}
+
+                {{ form.text}}
+
+                {% if form.instance.pk and form.text.value != form.instance.text %}<p class="mb-0 mt-1"><small class="text-muted font-italic"><strong>Old answer:</strong> {{ form.instance.text }}</small></p>{% endif %}
+              </td>
+                  <td>{{ form.is_correct }}</td>
+                    <td> {% if form.instance.pk %}
+                  {{ form.DELETE }}
+                {% endif %}</td>
+                </tr>
+
+            {% endfor %}
+                   </tbody>
+          </table>
+
+             <div class="col-lg-6">
+                   <small class="form-text text-muted">السوال يجب ان يحتوى إجابتان  على الاقل  منها واحدة اجابة صحيحة.</small>
+
+                 </div>
+               <div class="col-lg-5">
+    <button type="submit" class="btn btn-success">حفظ التعديلات</button>
+                   <a href="{% url 'question_delete' quiz.pk question.pk %}" class="btn btn-danger float-right"> حذف السؤال</a>
+ </div>   <div class="col-lg-1">
+     <a href="{% url 'quiz_change' id quiz.pk %}" class="btn btn-outline-secondary" role="button">عودة</a>
+
+ </div>
+             </div>
+      </div>
+                  </div>
+</div>
+                </form>
+        </div>
+
+    </div>
+            </div>
+
+        </div>
+
+    </section>
+  </div>
+
+
+{% endblock %}
+
+
+
+
+
+

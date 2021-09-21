@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+  <div class="content-wrapper" >
+       <section class="content-header" >
+
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i> الصفحة الرئيسية</a></li>
+
+      <li class="breadcrumb-item"><a href="">الانشطة</a></li>
+      <li class="breadcrumb-item"><a href="">{{ quiz.name }}</a></li>
+      <li class="breadcrumb-item active" aria-current="page">النتائج</li>
+    </ol>
+
+
+ <h1 class="align-left">
+    علامات الطالبات /
+   {{ quiz.name }}
+ </h1 >
+ </section>
+     <section class="content">
+       <div class="box box-primary">
+  <div class="box-header with-border">
+
+             </div>
+            <div class="box-body">
+  <div class="card">
+
+    <table id="example1" class="table table-bordered table-striped">
+      <thead>
+        <tr>
+          <th>أسم الطالب</th>
+          <th>التاريخ</th>
+          <th>درجة الاختبار</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for taken_quiz in taken_quizzes %}
+          <tr>
+            <td>{{ taken_quiz.student.user.name }}</td>
+            <td>{{ taken_quiz.date }}</td>
+            <td>{{ taken_quiz.score }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <div class="card-footer text-muted">
+      عدد المتفاعلين: <strong>{{ total_taken_quizzes }}</strong>
+    </div>
+  </div>
+               </div>
+  </div>
+       </section>
+      </div>
+{% endblock %}

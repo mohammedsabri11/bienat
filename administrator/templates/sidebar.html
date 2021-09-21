@@ -1,0 +1,61 @@
+{% load static %}
+
+<aside class="main-sidebar"  dir="rtl">
+        <!-- sidebar: style can be found in sidebar.less -->
+
+          <!-- Sidebar user panel -->
+
+          <!-- search form -->
+
+          <!-- /.search form -->
+          <!-- sidebar menu: : style can be found in sidebar.less -->
+        <section class="sidebar" >
+      <!-- Sidebar user panel -->
+<div class="user-panel">
+        <div class="pull-right image">
+          <img src="{% static 'img/profile.jpg' %}" class="img-circle" alt="User Image">
+        </div>
+        <div class="pull-left info">
+          <p>{{ user.username }}</p>
+          <a><i class="fa fa-circle text-success"></i> Online</a>
+        </div>
+      </div>
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">القائمة</li>
+        <li class=""><a href="{%  url 'home'  %}"><i class="fa fa-dashboard"></i> <span>الصفحة الرئيسية</span></a></li>
+
+     <li><a href="{%  url 'courses-list'  %}"><i class="fa fa-calendar"></i>
+                <span>الحلقات التعليمية </span></a></li>
+
+          <li class="treeview">
+          <a href="#">
+            <i class="fa fa-users"></i>
+            <span>هيئة التدريس</span>
+            <span class="pull-left-container">
+              <i class="fa fa-angle-left pull-left"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+                {% if user.is_superuser  %}
+            <li><a href="{%  url 'admins-list'  %}"><i class="fa fa-circle-o"></i>قائمة المشرفات</a></li>
+             {% endif %}
+              <li><a href="{%  url 'teachers-list'  %}"><i class="fa fa-circle-o"></i>  قائمة المعلمات</a></li>
+
+          </ul>
+        </li>
+<li class=""><a href="{%  url 'students'  %}"><i class="fa fa-dashboard"></i> <span>الطالبات</span></a></li>
+   <li class="header">التقارير</li>
+<li class=""><a href="{%  url 'admin-reports'  %}"><i class="fa fa-dashboard"></i> <span> التقارير</span></a></li>
+
+
+
+
+      </ul>
+    </section>
+
+        <!-- /.sidebar -->
+      </aside>
+
+
+

@@ -1,0 +1,109 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<div class="content-wrapper" dir="rtl">
+    <!-- Content Header (Page header) -->
+    <section class="content-header" dir="rtl">
+      <h1>
+      اظافة معلمة جديد
+      </h1>
+      <ol class="breadcrumb">
+       <li><a href="#"><i class="fa fa-dashboard"></i> الصفحة الرئيسية</a></li>
+       <li>المعلمات</li>
+        <li class="active">اظافة معلمة</li>
+      </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+      <div class="row">
+
+          <div class="box box-primary">
+              <div class="box-header with-border">
+
+             </div>
+
+                  <div class="box-body" style="padding: 20px;">
+               <div class="row">
+
+        <div class="col-md-12" style="margin-top: 5px;" dir="rtl">
+
+
+            <form class="form-horizontal" action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+
+                    <div class="row">
+        <div class="col-lg-6">
+          <table class = 'table table-hover' dir="rtl">
+            {% for field in form  %}
+              {% if forloop.counter < 4 %}
+                <tr>
+                  <td>{{ field.label }}</td>
+                  <td>{{ field }}</td>
+                </tr>
+               <tr>
+
+<td></td>
+              <td>{{field.errors}}</td>
+                </tr>
+              {% endif %}
+            {% endfor %}
+          </table>
+        </div>
+        <div class="col-lg-6">
+          <table class = 'table table-hover'>
+            {% for field in form %}
+              {% if forloop.counter >= 4 %}
+                <tr>
+                  <td>{{ field.label }}</td>
+                  <td>{{field}}</td>
+
+                </tr>
+                  <tr>
+
+<td></td>
+              <td>{{field.errors}}</td>
+                </tr>
+
+              {% endif %}
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+
+                    <div class="row">
+<div class="col-md-1">
+    </div>
+                                           <div class="col-md-4 col-lg-3">
+
+
+                    <button type="submit"  class="btn btn-block btn-primary">حفظ</button>
+  </div>
+                        <div class="col-md-7">
+      </div>
+ </div>
+
+                </form>
+
+        </div>
+        </div>
+
+    </div>
+
+
+        </div>
+      </div>
+    </section>
+  </div>
+
+{% endblock %}

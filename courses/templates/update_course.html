@@ -1,0 +1,115 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+
+
+  <div class="content-wrapper" dir="rtl">
+    <!-- Content Header (Page header) -->
+    <section class="content-header" dir="rtl">
+      <h1>
+        تعديل معلومات الحلقة
+      </h1>
+      <ol class="breadcrumb" dir="rtl">
+        <li><a href="#"><i class="fa fa-dashboard"></i> الصفحة الرئيسية</a></li>
+        <li>الحلقات التعليمية</li>
+        <li class="active"> تعديل معلومات الحلقة</li>
+      </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+
+            <div class="box box-primary">
+
+
+
+            <div class="box-body" style="padding: 30px;">
+
+
+                <form class="form-horizontal"  method="POST" >
+                    {% csrf_token %}
+
+ <div class="col-lg-6">
+ </div>
+                         <div class="col-lg-6">
+          <table class = 'table table-hover'>
+            {% for field in form %}
+              {% if forloop.counter <= 2 %}
+
+                <tr>
+                  <td>{{ field.label }}</td>
+                  <td>{{ field }}</td>
+                </tr>
+              <tr>
+                  <td>{{ field.error }}</td>
+
+                </tr>
+               {% else  %}
+ <tr>
+                  <td>{{ field.label }}</td>
+                  <td><div class="bootstrap-timepicker">
+                                   {{ field }}
+                                </div></td>
+                </tr>
+               <tr>
+                  <td>{{ field.error }}</td>
+
+                </tr>
+
+
+              {% endif %}
+            {% endfor %}
+               <tr>
+                   <td>
+                    </td>
+             <td>
+<div class="col-lg-10">
+                     <button type="submit" class="btn btn-block btn-primary">حفط</button>
+                  </div>
+                   </td>
+                   </tr>
+          </table>
+                              </div>
+
+        </form>  </div>
+
+                  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </section>
+
+
+
+  </div>
+
+
+
+
+
+
+{% endblock %}

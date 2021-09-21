@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <section class="content">
+      {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+          <div class="box box-primary">
+
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead class="uu">
+
+                  <th colspan="2">اسم الطالبة</th>
+                 <th>السبت</th>
+                  <th>الاحد</th>
+                  <th>الاثنين</th>
+
+
+
+<th>الثلاثاء</th>
+
+
+
+  <th>الاربعاء</th>
+
+  <th>الخميس</th>
+ <th> مجموع عدد ايام الحضور</th>
+
+
+                </thead>
+
+              <tbody>
+{% for student_id,scores_list in  resu2.items %}
+
+
+    <tr>
+
+     <td colspan="2"> {{ scores_list.name}}</td>
+
+
+<td> {{ scores_list.sat}}</td>
+                    <td> {{ scores_list.sunday}}</td>
+  <td> {{ scores_list.monday}}</td>
+      <td> {{ scores_list.tharsda}}</td>
+
+  <td> {{ scores_list.wenesda}}</td>
+
+ <td> {{ scores_list.tuesday}}</td>
+
+
+
+<td>
+     {% if scores_list.att == 0 %}
+      <span class="label label-danger pull-right">غياب دائم</span>
+ {% else %}
+    <span class="label label-warning pull-right">{{ scores_list.att}}</span>
+
+
+    {% endif %}
+
+
+
+
+                        </td>
+ {% endfor %}
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+
+
+    </section>
+{% endblock %}

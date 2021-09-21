@@ -1,0 +1,162 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+
+
+  <div class="content-wrapper" dir="rtl">
+    <!-- Content Header (Page header) -->
+    <section class="content-header" dir="rtl">
+      <h1>
+{{ cours_name}}/ الحلقة {{ episode}}
+      </h1>
+      <ol class="breadcrumb" dir="rtl">
+        <li><a href="#"><i class="fa fa-dashboard"></i> الصفحة الرئيسية</a></li>
+         <li>التقارير</li>
+          <li>{{ cours_name}} </li>
+        <li class="active"> الحلقة {{ episode}}</li>
+      </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box box-primary">
+          <div class="box-header with-border">
+           <form  id="formm">
+                    {% csrf_token %}
+
+              <div class="row" dir="rtl">
+                  <div class="col-lg-8">
+                  </div>
+ <div class="col-lg-4">
+
+      <table class = 'table table-hover'>
+          <tr>
+                  <td>اختر رقم الحلقة</td>
+         <td>
+             <select name="episodes" id="episodes">
+          {% for epsd in episod_list %}
+<option value="{{ epsd.id }}"> {{ epsd.episodeNo }}</option>
+             {% endfor %}
+              </select>
+                 </td>
+                </tr>
+
+          </table>
+ </div>
+                   </div>
+
+           </form>
+             </div>
+            <div class="box-body">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead class="uu">
+
+                  <th colspan="2">اسم الطالبة</th>
+                 <th>نسبة التجويد</th>
+                  <th>نسبة النحو</th>
+                  <th>نسبة المتشابهات</th>
+
+
+
+<th>نسبة المراجعة</th>
+
+
+
+  <th>نسبة الترتيل</th>
+
+  <th>مجموع عدد الاوجة</th>
+ <th> عدد ايام الحضور</th>
+
+
+                </thead>
+
+             <tbody>
+
+             </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+
+  </div>
+
+
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript">
+$(document).ready(function(){
+
+$(#episodes).change(function(){
+
+
+   var id= document.forms["formm"]["episodes"].value;
+//var id = console.log($(this).val());
+  getRow(id);
+
+  });
+ });
+
+function getRow(id){
+ $.ajax({
+    type: 'GET',
+    url: "{%  url 'report-load'  %}",
+    data: {"id":id},
+     dataType: 'html',
+
+    success: function(response){
+
+    var k=  '<tbody>';
+for student_name,scores_list in  resu2.items
+{
+
+  k+=  '<tr>';
+
+     k+= '<td>' + scores_list.name+'</td>';
+
+
+  k+= '<td>' + scores_list.intonation+'</td>';
+                 k+= '<td>' + scores_list.review+'</td>';
+   k+= '<td>' + scores_list.reading+'</td>';
+     k+= '<td>' + scores_list.memorize+'</td>';
+
+   k+= '<td>' + scores_list.grammer+'</td>';
+
+  k+= '<td>' + scores_list.num_of_faces+'</td>';
+
+
+
+
+
+
+
+
+           k+=  '</tr>';
+ }
+                k+=  '</tbody>';
+               document.getElementById('example1').innerHTML=k;
+    }
+  });
+}
+
+</script>
+	{% endblock javascript %}
+

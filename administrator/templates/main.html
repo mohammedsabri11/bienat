@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ab">
+
+{%  include 'header.html' %}
+
+ <title>اكاديمية حاملات المسك</title>
+  <body class="skin-blue-light sidebar-mini">
+<div class="wrapper">
+     {% if user.is_superuser or user.is_admin %}
+{%  include 'navbar.html' %}
+	{%  include 'sidebar.html' %}
+<!-- Content Wrapper. Contains page content -->
+
+
+	{% block content %}
+
+	{% endblock %}
+
+{%  include 'scripts2.html' %}
+{% block added %}
+
+	{% endblock added  %}
+
+  <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+          <b>Version</b> 2.2.0
+        </div>
+        <strong>Copyright &copy; 2021-2022 <a href="">Face recognize</a>.</strong> All rights reserved.
+      </footer>
+ {% endif %}
+</div>
+{% block javascript %}
+
+	{% endblock javascript %}
+
+</body>
+</html>

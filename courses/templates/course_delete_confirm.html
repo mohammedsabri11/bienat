@@ -1,0 +1,35 @@
+
+
+  <div class="modal fade" id="delete" dir="rtl">
+
+              <div class="modal-dialog" >
+                <div class="modal-content" >
+             <div class="box box-solid box-danger">
+ <div class="box-header with-border">
+
+                       <button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                     <h4 class="modal-title">تاكيد الحذف</h4>
+
+                  </div>
+                    <div class="box-body" style="padding: 20px;">
+                  <div class="modal-body">
+
+
+<h4 >سيتم حذف الحلقة التعليمية :<strong> <span class="course_name" style="color:blue;"></span> </strong> &hellip; هل انت متاكد من انك تريد المتابعة؟ </h4>
+
+                  </div>
+                  <div class="modal-footer">
+
+                 <form method="post" action="{%  url 'course-delete'  %}">
+    {% csrf_token %}
+                     	<input type="hidden" class="course_id" name="id">
+                      <button class="btn btn-default pull-left" data-dismiss="modal"><i class="fa fa-close"></i>اغلاق</button></a>
+
+                  	<button type="submit" class="btn btn-danger btn-flat" name="delete"><i class="fa fa-trash"></i> حذف</button>
+              </form>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+    </div>
+          </div>  </div>

@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+  <div class="content-wrapper" dir="rtl">
+    <!-- Content Header (Page header) -->
+  <section class="content-header" dir="rtl">
+      <h1 class="align-left">
+      قائمة الانشطة
+      </h1>
+      <ol class="breadcrumb">
+       <li class="breadcrumb-item"><a href="#"><i class="fa fa-dashboard"></i> الصفحة الرئيسية</a></li>
+
+        <li class="active">قائمة الانشطة</li>
+
+      </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+
+
+<div class="row">
+
+
+<div class="box box-primary">
+
+              <div class="box-header with-border">
+<a href="{% url 'quiz_add' id %}" class="btn btn-primary mb-3" role="button"><i class="fa fa-plus"></i> إضافة نشاط </a>
+
+             </div>
+
+                  <div class="box-body" lang="ar">
+
+
+
+
+
+
+  <div class="card">
+    <table id="example1" class="table table-bordered table-striped" dir="rtl" >
+      <thead class="uu">
+        <tr>
+          <th >عنوان النشاط</th>
+            <th > الحلقة</th>
+          <th >المادة</th>
+          <th >عدد من شاركوا في الاختبار </th>
+          <th>الاجراء</th>
+
+        </tr>
+      </thead>
+      <tbody>
+ {% for quiz in quizzes %}
+
+          <tr>
+            <td class="align-right"><a href="{% url 'quiz_change'  id quiz.pk %}">{{ quiz.name }}</a></td>
+            <td class="align-middle">{{ quiz.episode.episodeNo }}</td>
+
+            <td class="align-middle">{{ quiz.subject.get_html_badge }}</td>
+
+            <td class="align-middle">{{ quiz.taken_count }}</td>
+            <td class="text-right">
+              <a href="{% url 'quiz_results' quiz.pk %}" class="btn btn-primary">عرض النتائج</a>
+            </td>
+
+          </tr>
+
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="5">لم يتم انشاء اي نشاط في هذة الحلقة .</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+        </div>
+        </div>
+
+    </div>
+
+
+
+         </section><!-- /.content -->
+      </div><!-- /.content-wrapper -->
+
+
+{% endblock %}
+
+

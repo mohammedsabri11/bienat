@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+
+  <div class="content-wrapper" dir="rtl">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+       <h1 class="align-left">
+       التقارير
+      </h1>
+
+       <ol class="breadcrumb" dir="rtl">
+        <li><a href="#"><i class="fa fa-dashboard"></i> الصفحة الرئيسية</a></li>
+       <li>الدورات</li>
+             <li>قائمة الحلقات</li>
+        <li class="active">التقارير</li>
+      </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+      <div class="row">
+        <div class="col-xs-12">
+
+          <div class="box box-primary">
+
+            <div class="box-header with-border">
+              </div>
+
+            <div class="box-body">
+                 <table  id="example1" class="table table-bordered table-striped">
+                <thead>
+
+                  <th>الاسم</th>
+                    <th>نسية الحفظ </th>
+                  <th>نسية المراجعة</th>
+   <th>نسية التجويد</th>
+  <th>نسية الترتيل</th>
+  <th>المجموع</th>
+                   <th> مجموع عدد الاوجة</th>
+                  <th>عدد ايام الحضور</th>
+                </thead>
+
+                <tbody>
+  {% for stu in student_list.students %}
+                        <tr>
+  <td>{{ stu.user_id}}</td>
+                           <td>{{ stu.user.name}}</td>
+                             <td>{{ stu.user.birthday }}</td>
+                            <td>{{ stu.user.phone}}</td>
+
+
+                          <td>
+                              <a href="" >   <button class="btn btn-success btn-sm edit btn-flat" data-id="1"><i class="fa fa-edit"></i> Edit</button></a>
+                              <a href="" > <button class="btn btn-danger btn-sm delete btn-flat" data-id="2"><i class="fa fa-trash"></i> Delete</button></a>
+                          </td>
+                        </tr>
+                     {% endfor %}
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+{% endblock %}
+
+

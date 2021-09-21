@@ -1,0 +1,167 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+
+  <div class="content-wrapper" >
+    <!-- Content Header (Page header) -->
+    <section class="content-header" >
+       <h1 class="align-left">
+
+التقارير
+
+      </h1>
+      <ol class="breadcrumb" dir="rtl">
+        <li><a href="#"><i class="fa fa-dashboard"></i> الصفحة الرئيسية</a></li>
+              <li>التقارير</li>
+          <li class="active">{{ cours_name}} </li>
+
+
+      </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+
+
+
+
+
+ <div class="box box-primary">
+       </div>
+ <div class="box-body"   >
+
+   <div class="col-md-3 no-float">
+               <div class="info-box">
+                <span class="info-box-icon bg-blue"><i class="fa fa-video-camera"></i></span>
+                 <div class="info-box-content">
+                  <span class="info-box-text">ZOOM </span>
+               {% if zoom_id == 0 %}
+                  <span class="info-box-text"> لم يتم انشاء رابط <p> جلسة
+                     الزووم حتى الان </span>
+                  {% else %}
+                  <span class="info-box-number">
+
+
+
+ <a href="{% url 'zoom_meet_join' zoom_id %}" >انضمام</a></span>
+              {% endif %}>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+
+
+
+              <div class="info-box">
+                <span class="info-box-icon bg-red"><i class="fa fa-star-o"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text"><div class="info-box-red">العلامات</div> </span>
+
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+
+
+              <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
+                <div class="info-box-content">
+             <span class="info-box-number">الاختبارات</span>
+                  <span class="info-box-number">
+                 <a href="{% url 'student_quiz_list' %}" >عرض</a></span>
+
+
+</span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+
+
+
+
+
+ </div><!-- /.col -->
+      <div class="col-md-9 no-float">
+  <div class="box" style="padding: 20px;">
+
+       <table id="example1" class="table table-bordered table-striped">
+                <thead class="uu">
+
+                  <th >رقم الحلقة</th>
+                 <th>نسبة التجويد</th>
+                  <th>نسبة النحو</th>
+                  <th>نسبة المتشابهات</th>
+
+
+<th>نسبة الحفظ</th>
+<th>نسبة المراجعة</th>
+
+
+
+  <th>نسبة الترتيل</th>
+
+  <th>مجموع عدد الاوجة</th>
+ <th> عدد ايام الحضور</th>
+
+
+                </thead>
+
+             <tbody>
+{% for eps_id,scores_list in  resu2.items %}
+
+
+    <tr>
+
+     <td > ح{{eps_id}}</td>
+
+
+<td> {{ scores_list.intonation}}</td>
+         <td> {{ scores_list.grammer}}</td>
+
+ <td> {{ scores_list.likes}}</td>
+      <td> {{ scores_list.memorize}}</td>
+        <td> {{ scores_list.review}}</td>
+ <td> {{ scores_list.reading}}</td>
+ <td> {{ scores_list.num_of_faces}}</td>
+
+
+
+<td>
+     {% if scores_list.att == 0 %}
+      <span class="label label-danger pull-right">غياب دائم</span>
+ {% else %}
+    <span class="label label-warning pull-right">{{ scores_list.att}}</span>
+
+
+    {% endif %}
+
+
+
+
+                        </td>
+ {% endfor %}
+                </tbody>
+
+              </table>
+
+            </div>
+  </div>
+ </div>
+
+
+    </section>
+
+
+  </div>
+
+
+{% endblock %}

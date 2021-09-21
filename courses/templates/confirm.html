@@ -1,0 +1,55 @@
+
+<div class="modal fade" id="delete">
+    <div class="modal-dialog">
+        <div class="modal-content">
+          	<div class="modal-header">
+            	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              		<span aria-hidden="true">&times;</span></button>
+            	<h4 class="modal-title" style="text-align: center"><b>حذف الطالبة </b></h4>
+          	</div>
+          	<div class="modal-body">
+            	<form class="form-horizontal" method="POST" action="">
+            		<input type="hidden" class="stuid" name="id">
+	<h4 class="modal-title" style="text-align: center"><b> سيتم  حذف حساب الطالب    <span class="employee_id"></span></b></h4>
+
+
+          	<div class="modal-footer">
+            	<button type="button" class="btn btn-default btn-flat pull-left" data-dismiss="modal"><i class="fa fa-close"></i>اغلاق</button>
+            	<button type="submit" class="btn btn-danger btn-flat" name="delete"><i class="fa fa-trash"></i> حذف</button>
+             </div>
+            	</form>
+                </div>
+          	</div>
+        </div>
+    </div>
+
+
+  <div class="modal fade" id="delete2" dir="rtl">
+
+              <div class="modal-dialog" >
+                <div class="modal-content" >
+                  <div class="modal-header"  >
+                       <button type="button" class="close pull-left" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                     <h4 class="modal-title">تاكيد الحذف</h4>
+
+                  </div>
+                  <div class="modal-body">
+
+
+<p >سيتم حذف حساب الطالب<strong> <span class="employee_id" style="color:blue;"></span> </strong> &hellip; هل انت متاكد من انك تريد المتابعة؟ </p>
+
+                  </div>
+                  <div class="modal-footer">
+
+                 <form method="post">
+    {% csrf_token %}
+                      <button class="btn btn-default pull-left" data-dismiss="modal"><i class="fa fa-close"></i>اغلاق</button></a>
+
+                  	<button type="submit" class="btn btn-danger btn-flat" name="delete"><i class="fa fa-trash"></i> حذف</button>
+              </form>
+                  </div>
+                </div><!-- /.modal-content -->
+              </div><!-- /.modal-dialog -->
+
+          </div>

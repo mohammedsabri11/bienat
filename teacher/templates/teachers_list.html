@@ -1,0 +1,120 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+
+
+  <div class="content-wrapper" dir="rtl">
+    <!-- Content Header (Page header) -->
+    <section class="content-header" >
+      <h1>
+     قائمة المعلمات
+      </h1>
+      <ol class="breadcrumb">
+           <li><a href="#"><i class="fa fa-dashboard"></i> الصفحة الرئيسية</a></li>
+        <li>المعلمات</li>
+        <li class="active"> قائمة المعلمات</li>
+      </ol>
+    </section>
+    <!-- Main content -->
+    <section class="content">
+      {% for message in messages %}
+        {% if message.tags == 'error' %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% else %}
+            <div class="alert alert-success">
+                {{ message }}
+            </div>
+        {% endif %}
+    {% endfor %}
+
+          <div class="box box-primary">
+          <div class="box-header with-border">
+               <a href="{%  url 'add-teacher' %}"  class="btn btn-primary btn-sm btn-flat"><i class="fa fa-plus"></i>  اظافة معلمة </a>
+            </div>
+
+            <div class="box-body" style="padding: 20px;">
+              <table  id="example1" class="table table-bordered table-striped" dir="rtl">
+                <thead>
+
+
+                  <th>الاسم </th>
+     <th>رقم الهاتف </th>
+                   <th>تاريخ الميلاد</th>
+ <th>تاريخ الانظمام</th>
+                  <th>الاجراء</th>
+
+                </thead>
+
+                <tbody>
+{% for teacher in teacher_list %}
+                        <tr>
+
+                          <td><b>{{ teacher.name }}</b></td>
+  <td>{{ teacher.phone}}</td>
+                               <td>{{ teacher.birthday}}</td>
+
+                            <td>{{teacher.date_joined}}</td>
+
+                          <td>
+                               <button class="btn btn-danger btn-sm delete btn-flat" data-id="{{ teacher.pk}}"><i class="fa fa-trash"></i> حذف</button>
+
+                              </td>
+
+                        </tr>
+ {% endfor %}
+                </tbody>
+
+              </table>
+            </div>
+          </div>
+
+    </section>
+  </div>
+
+
+{% endblock %}
+
+{% block added %}
+
+{%  include 'teacher_delete_confirm.html' %}
+	{% endblock added  %}
+
+{% block javascript %}
+<script>
+$(function(){
+
+
+
+
+$('.delete').click(function(e){
+
+ e.preventDefault();
+
+ $('#delete').modal('show');
+
+  var id = $(this).data('id');
+
+  getRow(id);
+  });
+ });
+
+function getRow(id){
+  $.ajax({
+    type: 'GET',
+    url: "{%  url 'teacher-delete'  %}",
+    data: {"id":id},
+
+    success: function(response){
+  $('.teacher_id').val(id);
+
+      $('.teacher_name').html(response.name);
+    }
+  });
+}
+
+</script>
+	{% endblock javascript %}
+

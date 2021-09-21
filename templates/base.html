@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar">
+{%  include 'header2.html' %}
+
+
+<body class="layout-top-nav skin-blue-light" dir="rtl">
+
+
+<div class="wrapper" >
+   {% if user.is_teacher  %}
+
+{%  include 'lnavbar.html' %}
+
+{% elif user.is_student  %}
+
+{%  include 'snavbar.html' %}
+
+
+  {% endif %}
+
+	 {% block content %}
+
+	{% endblock %}
+
+ <footer class="main-footer">
+        <div class="pull-right hidden-xs">
+          <b>Version</b> 2.2.0
+        </div>
+        <strong>Copyright &copy; 2021-2022 <a href="">Face recognize</a>.</strong> All rights reserved.
+      </footer>
+
+      </div>
+
+<!-- ./wrapper -->
+{%  include 'scripts2.html' %}
+</body>
+</html>

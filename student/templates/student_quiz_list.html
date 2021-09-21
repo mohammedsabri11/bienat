@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+
+  <!-- Content Wrapper. Contains page content -->
+
+  <div class="content-wrapper" dir="rtl">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1 class="align-left">
+      الصفحة الرئيسية
+      </h1>
+      <ol class="breadcrumb">
+     <li class="active"><a href="#"><i class="fa fa-dashboard"></i> الصفحة الرئيسية</a></li>
+
+
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        <div class="box box-primary">
+            </div>
+      <div class="box-body" style="padding: 20px;"  >
+
+
+
+  <div class="col-md-3 no-float">
+               <div class="info-box">
+                <span class="info-box-icon bg-blue"><i class="fa fa-video-camera"></i></span>
+               <div class="info-box-content">
+                  <span class="info-box-text">ZOOM </span>
+                {% if zoom_id == 0 %}
+                  <span class="info-box-text"> لم يتم انشاء رابط <p> جلسة
+                     الزووم حتى الان </span>
+                  {% else %}
+                  <span class="info-box-number">
+
+
+
+ <a href="{% url 'zoom_meet_join' zoom_id %}" >انضمام</a></span>
+              {% endif %}
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+
+
+
+              <div class="info-box">
+                 <span class="info-box-icon bg-red"><i class="fa fa-star-o"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text"> العلامات</span>
+<a href="{% url 'student-reports' %}" >عرض</a></span>
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+
+
+              <div class="info-box">
+              <span class="info-box-icon bg-yellow"><i class="fa fa-files-o"></i></span>
+                  <div class="info-box-content">
+                  <span class="info-box-number"><div class="info-box-red">الاختبارات</div></span>
+
+                </div><!-- /.info-box-content -->
+              </div><!-- /.info-box -->
+
+
+
+
+
+ </div><!-- /.col -->
+ <div class="col-md-9 no-float">
+  <div class="box" style="padding: 20px;">
+
+     <table  id="example1" class="table table-bordered table-striped">
+
+      <thead>
+        <tr>
+          <th>  عنوان الاختبار</th>
+          <th>المادة</th>
+          <th>عدد الاسئلة</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for quiz in quizzes %}
+          <tr>
+            <td class="align-right">{{ quiz.name }}</td>
+            <td class="align-right">{{ quiz.subject.get_html_badge }}</td>
+            <td class="align-right">{{ quiz.questions_count }} اسئلة</td>
+            <td class="text-right">
+              <a href="{% url 'take_quiz' quiz.pk %}" class="btn btn-primary">بدء النشاط</a>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td class="bg-light text-center font-italic" colspan="4">لايوجد اي انشطة .</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+            </div>
+  </div>
+
+        <!-- ./col -->
+
+
+      <!-- /.row -->
+ </div><!-- /.col -->
+      </section>
+      <!-- right col -->
+    </div>
+
+
+
+
+
+
+{% endblock %}
