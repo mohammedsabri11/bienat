@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 
 import os
 from django.contrib.messages import constants as messages
-
+import django_heroku
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
@@ -33,7 +33,7 @@ TEMPLATE_DIR_ADMINISTRATOR = os.path.join(ADMINISTRATOR_DIR, 'templates')
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0i-lx9hafeo^bzbbzm1$vb-gd-gcbi&ln@vtm!6uqg0v3zs8x('
+SECRET_KEY = '39Ea464Ada306Dee51Fa9C239763A00582Bd37A7Df716D32'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -62,6 +62,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -139,14 +140,15 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
+STATIC_ROOT=os.path.join(BASE_DIR,'staticfiles')
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/images/'
+MEDIA_URL = '/imgs/'
 CSS_URL = '/css/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+STATICFILES_STORAGE='whitenoise.storage.Compressed'
 AUTH_USER_MODEL = 'main.User'
 
 LOGIN_URL = 'login'
@@ -160,7 +162,10 @@ LOGOUT_REDIRECT_URL = 'home'
 
 # Messages built-in framework
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/img')
 CSS_ROOT = os.path.join(BASE_DIR, 'static/css')
 DATE_INPUT_FORMATS=['%Y-%m-%d']
 #CRISPY_TEMPLATE_PACK = 'bootstrap4'
+django_heroku.settings(locals())
+
+
